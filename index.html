@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زواج</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation-card">
+            <div class="card-header">
+                <div class="bismillah">﷽</div>
+                <div class="arabic-text">
+                    بارك الله لكم
+                    وبارك عليكم وجمع بينكما في خير
+                </div>
+            </div>
+
+            <div class="invitation-content">
+                <p class="invite-text">نتشرف ونسعد بدعوتكم لمشاركتنا الفرحة بزواج</p>
+                
+                <div class="names-section">
+                    <div class="groom">اشاب /</div>
+                    <div class="bride">على الكريمة /</div>
+                </div>
+
+                <div class="date-section">
+                    <div class="calendar-icon">📅</div>
+                    <div class="date">يوم الخميس الموافق</div>
+                </div>
+
+                <div id="qrcode"></div>
+
+                <div class="footer-text">
+                    <div class="footer-content">
+                        مقدرين حرصكم على المشاركة
+                        <br>
+                        وتتويج المناسبة بحضوركم
+                    </div>
+                    <button class="show-attendance-btn footer-btn">تأكيد الحضور</button>
+                </div>
+
+                <div class="attendance-box-overlay"></div>
+                <div class="attendance-box">
+                    <div class="attendance-form">
+                        <h2>تأكيد الحضور</h2>
+                        <input 
+                            type="text" 
+                            id="guestName" 
+                            placeholder="أدخل اسمك" 
+                            class="input-field"
+                            autocomplete="off"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                            data-form-type="other"
+                        >
+                        <div class="button-group">
+                            <button id="confirmYes" class="confirm-button confirm-yes">✓ سأحضر</button>
+                            <button id="confirmNo" class="confirm-button confirm-no">✗ لن أتمكن من الحضور</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="status-message"></div>
+
+                <div class="location-section">
+                    <div class="location-buttons">
+                        <button class="location-btn">
+                            <span class="icon">📍</span>
+                            اضغط للوصول للموقع
+                        </button>
+                    </div>
+                </div>
+
+                <div class="map-button-container">
+                    <button class="map-location-btn" onclick="window.open('https://maps.app.goo.gl/J5SzdTuTRQyKbP5c6', '_blank')">
+                        <span class="map-icon">📍</span>
+                        موقع القاعة
+                    </button>
+                </div>
+
+                <div class="hosts">
+                    <p>الداعون: <span>zombie & 8hrk</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <div class="error-alert-overlay"></div>
+    <div class="error-alert">
+        <h3>الرجاء إدخال اسمك</h3>
+        <button class="error-alert-button">حسناً</button>
+    </div>
+    <div class="reset-alert-overlay"></div>
+    <div class="reset-alert">
+        <h3>هل أنت متأكد من إعادة التعيين؟ سيؤدي هذا إلى مسح استجابتك.</h3>
+        <div class="reset-alert-buttons">
+            <button class="reset-alert-button reset-confirm">نعم</button>
+            <button class="reset-alert-button reset-cancel">إلغاء</button>
+        </div>
+    </div>
+    <button class="settings-btn">⚙️</button>
+</body>
+</html> 

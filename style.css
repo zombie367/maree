@@ -1,0 +1,2167 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    /* Primary Colors */
+    --gold-primary: #C6A664;
+    --gold-light: #DBC391;
+    --gold-dark: #A68A4F;
+    
+    /* Background Colors */
+    --bg-dark: #1E1E1E;
+    --bg-darker: #161616;
+    
+    /* Text Colors */
+    --text-light: #F5E6CC;
+    --text-muted: #B8B8B8;
+    
+    /* Accent Colors */
+    --accent-success: #4A9B7F;
+    --accent-error: #A65D57;
+    
+    /* Gradients */
+    --gold-gradient: linear-gradient(135deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+    --bg-gradient: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    --overlay-gradient: linear-gradient(45deg, rgba(198, 166, 100, 0.05), rgba(198, 166, 100, 0.02));
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-light);
+}
+
+/* Container and Card */
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+}
+
+.invitation-card {
+    background: var(--bg-darker);
+    color: var(--text-light);
+    border: none;
+    padding: 25px 20px;
+    position: relative;
+    overflow: hidden;
+    max-width: 500px;
+    margin: 10px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bismillah {
+    font-size: 40px;
+    color: var(--gold-primary);
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(198, 166, 100, 0.2);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(198, 166, 100, 0.3), 0 0 10px rgba(198, 166, 100, 0.2);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(198, 166, 100, 0.4), 0 0 20px rgba(198, 166, 100, 0.3);
+    }
+}
+
+.arabic-text {
+    font-size: 22px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.invitation-content {
+    text-align: center;
+}
+
+.invite-text {
+    font-size: 20px;
+    margin: 20px 0;
+    color: var(--text-light);
+}
+
+.names-section {
+    position: relative;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid var(--gold-primary);
+    border-radius: 15px;
+    background: var(--overlay-gradient);
+}
+
+.names-section::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--gold-primary), transparent, var(--gold-primary));
+    border-radius: 16px;
+    z-index: -1;
+    animation: borderFlow 3s linear infinite;
+    opacity: 0.15;
+}
+
+@keyframes borderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.date-section {
+    background: var(--overlay-gradient);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 1px solid rgba(198, 166, 100, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.calendar-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: var(--gold-primary);
+    animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.date {
+    font-size: 20px;
+    color: var(--gold-primary);
+    font-family: 'Noto Naskh Arabic', serif;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+}
+
+/* Add decorative elements before and after the date */
+.date::before,
+.date::after {
+    content: '—';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-light);
+    opacity: 0.6;
+}
+
+.date::before {
+    left: 0;
+}
+
+.date::after {
+    right: 0;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .date-section {
+        padding: 15px;
+    }
+    
+    .calendar-icon {
+        font-size: 28px;
+    }
+    
+    .date {
+        font-size: 18px;
+        padding: 0 25px;
+    }
+}
+
+/* Update QR code styles */
+#qrcode {
+    display: none;
+    margin: 20px auto;
+    width: 250px;
+    height: 250px;
+    position: relative;
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+    animation: fadeIn 0.5s ease-in-out when displayed;
+}
+
+.border-animation {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 3px solid var(--gold);
+    border-radius: 22px;
+    animation: borderGlow 2s infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% { box-shadow: 0 0 15px var(--gold); }
+    50% { box-shadow: 0 0 25px var(--dark-gold); }
+}
+
+.location-section {
+    display: none;
+    margin: 20px 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.location-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.location-btn {
+    background: var(--gold-gradient);
+    border: none;
+    color: var(--bg-darker);
+    padding: 12px 25px;
+    font-weight: 600;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.location-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.icon {
+    font-size: 20px;
+}
+
+/* Update footer text styles */
+.footer-text {
+    font-size: 18px;
+    color: var(--text-light);
+    line-height: 2;
+    padding: 25px;
+    background: var(--overlay-gradient);
+    border-radius: 15px;
+    margin: 25px 0;
+    border: 1px solid rgba(198, 166, 100, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* Update the attendance button style for footer */
+.footer-btn {
+    margin: 0;
+    background: transparent;
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 10px 30px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border-color: transparent;
+}
+
+/* Add decorative elements */
+.footer-text::before,
+.footer-text::after {
+    content: '❀';
+    position: absolute;
+    color: var(--gold-primary);
+    opacity: 0.3;
+    font-size: 24px;
+}
+
+.footer-text::before {
+    top: 10px;
+    left: 10px;
+}
+
+.footer-text::after {
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Style the text lines differently */
+.footer-text br {
+    display: block;
+    content: "";
+    margin: 8px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .footer-text {
+        font-size: 16px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    
+    .footer-text::before,
+    .footer-text::after {
+        font-size: 20px;
+    }
+
+    .footer-btn {
+        padding: 8px 25px;
+        font-size: 14px;
+    }
+}
+
+.hosts {
+    margin-top: 30px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--overlay-gradient);
+    border: 1px solid rgba(198, 166, 100, 0.1);
+}
+
+.hosts p {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 16px;
+    color: var(--gold-primary);
+    display: inline-block;
+    position: relative;
+    padding: 0 20px;
+}
+
+/* Add decorative elements before and after the text */
+.hosts p::before,
+.hosts p::after {
+    content: '•';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-light);
+    opacity: 0.6;
+}
+
+.hosts p::before {
+    left: 0;
+}
+
+.hosts p::after {
+    right: 0;
+}
+
+/* Style the English text differently */
+.hosts p span {
+    font-family: monospace;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+/* Add hover effect */
+.hosts:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .hosts {
+        margin-top: 20px;
+        padding: 12px;
+    }
+    
+    .hosts p {
+        font-size: 14px;
+    }
+}
+
+/* Decorative elements */
+.invitation-card::before,
+.invitation-card::after,
+.invitation-card .corner-top-right,
+.invitation-card .corner-bottom-left {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-image: var(--border-gradient);
+    opacity: 0.8;
+}
+
+.invitation-card::before {
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 15% 0, 0 15%);
+}
+
+.invitation-card::after {
+    bottom: 0;
+    right: 0;
+    clip-path: polygon(100% 85%, 100% 100%, 85% 100%);
+}
+
+.corner-top-right {
+    top: 0;
+    right: 0;
+    clip-path: polygon(85% 0, 100% 0, 100% 15%);
+}
+
+.corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    clip-path: polygon(0 85%, 15% 100%, 0 100%);
+}
+
+/* Typography */
+h1, h2, h3 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+h2 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+h3 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+/* QR Code Section */
+#qrcode {
+    margin: 30px auto;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-wrapper {
+    position: relative;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px;
+}
+
+.border-animation {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.moving-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.moving-border::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 6px solid var(--gold-primary);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(198, 166, 100, 0.2);
+    animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+    0% {
+        clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%);
+    }
+    25% {
+        clip-path: polygon(85% 0, 100% 0, 100% 100%, 85% 100%);
+    }
+    50% {
+        clip-path: polygon(0 85%, 100% 85%, 100% 100%, 0 100%);
+    }
+    75% {
+        clip-path: polygon(0 0, 15% 0, 15% 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%);
+    }
+}
+
+.qr-code {
+    position: relative;
+    z-index: 2;
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 10px;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-code img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.name-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    background: rgba(26, 26, 26, 0.9);
+    padding: 6px 24px;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    min-width: 80px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(4px);
+}
+
+.name-overlay span {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cream);
+    letter-spacing: 0.3px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    text-transform: lowercase;
+}
+
+/* Update Attendance Form Styles */
+.attendance-form {
+    margin: 15px 0;
+    padding: 15px;
+    background: var(--overlay-gradient);
+    border-radius: 15px;
+    border: 1px solid rgba(198, 166, 100, 0.1);
+    position: relative;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+.attendance-form h2 {
+    color: var(--gold-primary);
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(198, 166, 100, 0.1);
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Update Input Field Styles */
+.input-field {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 8px 0;
+    background: var(--bg-darker);
+    border: 1px solid var(--gold-primary);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-light);
+    font-family: 'Noto Naskh Arabic', serif;
+    transition: all 0.3s ease;
+    text-align: center;
+    -webkit-autofill: none;
+    -webkit-box-shadow: 0 0 0 30px var(--bg-darker) inset !important;
+    -webkit-text-fill-color: var(--text-light) !important;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--gold-light);
+    box-shadow: 0 0 15px rgba(198, 166, 100, 0.15);
+    background: var(--bg-darker);
+}
+
+.input-field::placeholder {
+    color: var(--gold-primary);
+    opacity: 0.6;
+    font-size: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    transition: opacity 0.3s ease;
+}
+
+.input-field:focus::placeholder {
+    opacity: 0.4;
+}
+
+/* Add subtle glow effect on focus */
+.input-field:focus {
+    box-shadow: 0 0 0 1px var(--gold-primary),
+                0 0 15px rgba(198, 166, 100, 0.1);
+}
+
+/* Style for when input has content */
+.input-field:not(:placeholder-shown) {
+    border-color: var(--gold-light);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .input-field {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    .input-field::placeholder {
+        font-size: 13px;
+    }
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirm-yes {
+    background: linear-gradient(45deg, var(--gold-primary), var(--gold-light));
+    color: var(--bg-darker);
+    font-weight: 600;
+}
+
+.confirm-no {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--gold-primary);
+}
+
+.confirm-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.15);
+}
+
+.confirm-yes:hover {
+    background: linear-gradient(45deg, var(--gold-light), var(--gold-primary));
+}
+
+.confirm-no:hover {
+    background: rgba(198, 166, 100, 0.1);
+}
+
+.confirm-button:active {
+    transform: translateY(1px);
+}
+
+/* Add shine effect to buttons */
+.confirm-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.confirm-button:hover::after {
+    animation: shine 1.5s ease-out;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .button-group {
+        flex-direction: column;
+    }
+
+    .confirm-button {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Messages */
+.success-message, .decline-message, .welcome-message {
+    text-align: center;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin: 15px 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-message {
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 15px 0;
+    background: var(--overlay-gradient);
+    border: 1px solid rgba(198, 166, 100, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-message h3 {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Noto Naskh Arabic', serif;
+    text-shadow: 0 2px 10px rgba(198, 166, 100, 0.1);
+}
+
+.success-message p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+.decline-message {
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin: 20px auto;
+    background: var(--overlay-gradient);
+    border: 1px solid rgba(198, 166, 100, 0.1);
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.decline-message .decline-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.decline-message h3 {
+    color: var(--gold-primary);
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-family: 'Noto Naskh Arabic', serif;
+    text-shadow: 0 2px 10px rgba(198, 166, 100, 0.1);
+}
+
+.decline-message p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 480px) {
+    .decline-message {
+        padding: 25px 15px;
+        margin: 15px auto;
+    }
+    
+    .decline-message .decline-icon {
+        font-size: 40px;
+    }
+    
+    .decline-message h3 {
+        font-size: 18px;
+    }
+    
+    .decline-message p {
+        font-size: 14px;
+    }
+}
+
+.welcome-message {
+    background: var(--light-bg);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessibility and Interactive States */
+.confirm-button:hover, .reset-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.confirm-button:active, .reset-button:active {
+    transform: translateY(1px);
+}
+
+/* Focus States */
+.input-field:focus,
+.confirm-button:focus,
+.reset-button:focus {
+    outline: 3px solid rgba(44, 62, 80, 0.2);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: none;
+    }
+    
+    .invitation-card {
+        box-shadow: none;
+    }
+    
+    .reset-button {
+        display: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #a8b9cc;
+        --light-bg: #2c3e50;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #1a1a1a 0%, #1a1a1a 100%);
+    }
+    
+    .invitation-card {
+        background: #1a1a1a;
+        color: var(--white);
+    }
+    
+    .input-field {
+        background: #1a1a1a;
+        color: var(--text-light);
+        border-color: #3f3f3f;
+    }
+}
+
+/* Add moving verifier styles */
+.qr-verifier {
+    position: absolute;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    font-size: 12px;
+    color: #2c3e50;
+    transition: all 0.5s ease-in-out;
+    z-index: 4;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.time-stamp {
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.verification-note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Animation for verifier */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.qr-verifier {
+    animation: pulse 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-height: 800px) {
+    .invitation-card {
+        padding: 20px 15px;
+    }
+    
+    .bismillah {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+    
+    .arabic-text {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    #qrcode {
+        margin: 15px auto;
+    }
+}
+
+/* For very small screens */
+@media (max-height: 600px) {
+    .container {
+        padding: 5px;
+    }
+    
+    .invitation-card {
+        margin: 5px auto;
+    }
+    
+    .location-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .location-btn {
+        flex: 1;
+        min-width: 150px;
+    }
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(26, 26, 26, 0.9);
+    border: 4px solid transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        45deg,
+        var(--gold-dark) 0%,
+        var(--gold-primary) 50%,
+        var(--gold-light) 100%
+    );
+    border-radius: 20px;
+    border: 2px solid rgba(26, 26, 26, 0.9);
+    background-clip: padding-box;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        45deg,
+        var(--gold-light) 0%,
+        var(--gold-primary) 50%,
+        var(--gold-dark) 100%
+    );
+    box-shadow: 0 0 10px rgba(198, 166, 100, 0.2);
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+}
+
+/* Hide scrollbar when not scrolling but keep functionality */
+::-webkit-scrollbar-thumb {
+    opacity: 0;
+    animation: showScrollbar 1s forwards;
+}
+
+@keyframes showScrollbar {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    overflow-y: overlay; /* Makes scrollbar overlay content */
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-width: 1px;
+    }
+}
+
+/* Add new welcome message box styles */
+.welcome-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    animation: welcomeIn 0.5s ease-out;
+    max-width: 90%;
+    width: 320px;
+}
+
+.welcome-box h3 {
+    color: var(--gold-primary);
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+.welcome-box p {
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+.welcome-box .emoji {
+    font-size: 32px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.welcome-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.welcome-box-button {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.welcome-box-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+@keyframes welcomeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Disable autofill styles */
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover,
+.input-field:-webkit-autofill:focus,
+.input-field:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0 30px var(--bg-darker) inset !important;
+    -webkit-text-fill-color: var(--text-light) !important;
+}
+
+/* Add styles for the show attendance button */
+.show-attendance-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 30px;
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.show-attendance-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.show-attendance-btn:active {
+    transform: translateY(1px);
+}
+
+/* Add styles for the attendance message box */
+.attendance-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-out;
+    display: none;
+}
+
+.attendance-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-align: center;
+    animation: welcomeIn 0.5s ease-out;
+    max-width: 90%;
+    width: 320px;
+    display: none;
+}
+
+.attendance-box h2 {
+    color: var(--gold-primary);
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Update attendance form styles for the box */
+.attendance-box .attendance-form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.attendance-box .input-field {
+    margin-bottom: 20px;
+}
+
+.attendance-box .button-group {
+    margin-top: 20px;
+}
+
+/* Add styles for the error message alert */
+.error-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--accent-error);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    text-align: center;
+    max-width: 90%;
+    width: 300px;
+    display: none;
+}
+
+.error-alert h3 {
+    color: var(--accent-error);
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+.error-alert-button {
+    background: var(--accent-error);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-alert-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(166, 93, 87, 0.2);
+}
+
+.error-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none;
+}
+
+/* Add styles for reset confirmation alert */
+.reset-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    text-align: center;
+    max-width: 90%;
+    width: 320px;
+    display: none;
+}
+
+.reset-alert h3 {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+    line-height: 1.6;
+}
+
+.reset-alert-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.reset-alert-button {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-confirm {
+    background: var(--accent-error);
+    color: var(--text-light);
+    border: none;
+}
+
+.reset-cancel {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--gold-primary);
+}
+
+.reset-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none;
+}
+
+/* Admin Panel Styles */
+.admin-panel {
+    background: var(--bg-darker);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--gold-primary);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.login-form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.login-form .back-btn {
+    background: transparent;
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px auto;
+    width: 100%;
+    max-width: 200px;
+}
+
+.login-form .back-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border-color: transparent;
+}
+
+.login-form h2 {
+    color: var(--gold-primary);
+    margin-bottom: 20px;
+}
+
+.login-form .input-field {
+    margin: 10px 0;
+}
+
+.admin-btn {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 200px;
+}
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.logout-btn {
+    background: var(--accent-error) !important;
+    color: var(--text-light) !important;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px auto 10px !important;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(166, 93, 87, 0.3);
+}
+
+.scanner-section {
+    text-align: center;
+}
+
+.scanner-section h2 {
+    color: var(--gold-primary);
+    margin-bottom: 20px;
+}
+
+#reader {
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.scan-result {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.success-scan {
+    background: rgba(74, 155, 127, 0.1);
+    border: 1px solid var(--accent-success);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.success-scan h3 {
+    color: var(--accent-success);
+    margin-bottom: 10px;
+}
+
+.error-scan {
+    background: rgba(166, 93, 87, 0.1);
+    border: 1px solid var(--accent-error);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.error-scan h3 {
+    color: var(--accent-error);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.error-scan p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.error-scan .admin-btn {
+    background: var(--accent-error);
+    border: none;
+    color: var(--text-light);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.error-scan .admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(166, 93, 87, 0.3);
+}
+
+.timestamp {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+/* Add styles for settings button */
+.settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-darker);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 999;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.settings-btn:hover {
+    transform: rotate(45deg);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+/* Update back button styles */
+.header-nav {
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.back-btn {
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    min-width: 120px;
+}
+
+.back-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.back-icon {
+    font-size: 20px;
+}
+
+.back-text {
+    font-weight: 500;
+}
+
+/* Remove old back button styles */
+/* .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    ...
+} */
+
+/* Add styles for device list */
+.device-list-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--overlay-gradient);
+    border-radius: 15px;
+    border: 1px solid rgba(198, 166, 100, 0.1);
+}
+
+.device-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.device-item {
+    padding: 15px;
+    margin: 10px 0;
+    background: var(--bg-darker);
+    border-radius: 8px;
+    border: 1px solid var(--gold-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.device-details {
+    flex: 1;
+}
+
+.device-details p {
+    margin: 5px 0;
+    color: var(--text-light);
+}
+
+.reset-device-btn {
+    background: var(--accent-error);
+    color: var(--text-light);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.reset-device-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(166, 93, 87, 0.3);
+}
+
+.device-info {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(198, 166, 100, 0.1);
+    border-radius: 6px;
+}
+
+/* Main Menu Styles */
+.main-menu {
+    text-align: center;
+    padding: 20px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.menu-btn {
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.menu-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.menu-icon {
+    font-size: 24px;
+}
+
+.back-to-menu-btn {
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 25px;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 20px;
+}
+
+.back-to-menu-btn::before {
+    content: '🏠';
+    font-size: 16px;
+}
+
+.back-to-menu-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+/* Update scanner and device list sections */
+.scanner-section, .device-list-section {
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .menu-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .menu-btn {
+        min-width: 200px;
+    }
+}
+
+/* Add styles for device sections */
+.device-section {
+    margin-bottom: 30px;
+}
+
+.device-section h3 {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(198, 166, 100, 0.1);
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status-attended {
+    background: rgba(74, 155, 127, 0.1);
+    color: var(--accent-success);
+    border: 1px solid var(--accent-success);
+}
+
+.status-pending {
+    background: rgba(198, 166, 100, 0.1);
+    color: var(--gold-primary);
+    border: 1px solid var(--gold-primary);
+}
+
+/* Add styles for refresh button */
+.refresh-btn {
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 auto 20px;
+}
+
+.refresh-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+}
+
+.refresh-icon {
+    font-size: 16px;
+    display: inline-block;
+}
+
+/* Add styles for device reset confirmation */
+.device-reset-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: none;
+}
+
+.device-reset-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    text-align: center;
+    max-width: 90%;
+    width: 320px;
+    display: none;
+}
+
+.device-reset-alert h3 {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+    line-height: 1.6;
+}
+
+.device-reset-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.device-reset-btn {
+    padding: 8px 25px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.device-reset-btn.confirm {
+    background: var(--accent-error);
+    color: var(--text-light);
+    border: none;
+}
+
+.device-reset-btn.cancel {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--gold-primary);
+}
+
+.device-reset-btn:hover {
+    transform: translateY(-2px);
+}
+
+.device-reset-btn.confirm:hover {
+    box-shadow: 0 4px 12px rgba(166, 93, 87, 0.3);
+}
+
+.device-reset-btn.cancel:hover {
+    background: rgba(198, 166, 100, 0.1);
+}
+
+/* Add style for declined status */
+.status-declined {
+    background: rgba(166, 93, 87, 0.1);
+    color: var(--accent-error);
+    border: 1px solid var(--accent-error);
+}
+
+/* Add styles for developer reset button */
+.dev-reset-btn {
+    background: rgba(166, 93, 87, 0.1);
+    border: 1px solid var(--accent-error);
+    color: var(--accent-error);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 20px auto 0;
+}
+
+.dev-reset-btn:hover {
+    background: var(--accent-error);
+    color: var(--text-light);
+}
+
+.dev-icon {
+    font-size: 16px;
+}
+
+/* Add styles for developer reset confirmation */
+.dev-reset-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-darker);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid var(--accent-error);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1002;
+    text-align: center;
+    max-width: 90%;
+    width: 320px;
+    display: none;
+}
+
+.dev-reset-alert h3 {
+    color: var(--accent-error);
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Noto Naskh Arabic', serif;
+    line-height: 1.6;
+}
+
+.dev-reset-alert p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Add styles for device tabs */
+.device-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.tab-btn {
+    flex: 1;
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 15px;
+    border-radius: 12px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.tab-btn.active {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+}
+
+.tab-icon {
+    font-size: 20px;
+}
+
+.tab-text {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tab-count {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .device-tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 15px;
+    }
+    
+    .tab-text {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Add style for empty message */
+.empty-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 20px;
+    background: var(--bg-darker);
+    border-radius: 8px;
+    border: 1px dashed rgba(198, 166, 100, 0.3);
+    margin: 10px 0;
+}
+
+/* Add styles for tab content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Update menu buttons styles */
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Add style for logout button in menu */
+.logout-menu-btn {
+    background: var(--overlay-gradient) !important;
+    border: 1px solid var(--accent-error) !important;
+    color: var(--accent-error) !important;
+}
+
+.logout-menu-btn:hover {
+    background: var(--accent-error) !important;
+    color: var(--text-light) !important;
+    border-color: transparent !important;
+}
+
+.thank-you-message {
+    color: var(--gold-primary);
+    font-size: 18px;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(198, 166, 100, 0.1);
+    border: 1px solid var(--gold-primary);
+    font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Add styles for map button container and button */
+.map-button-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.map-location-btn {
+    background: var(--overlay-gradient);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Noto Naskh Arabic', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+}
+
+.map-location-btn:hover {
+    background: var(--gold-gradient);
+    color: var(--bg-darker);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(198, 166, 100, 0.2);
+}
+
+.map-icon {
+    font-size: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .map-location-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+    
+    .map-icon {
+        font-size: 18px;
+    }
+}
+
+.scan-tip {
+    color: var(--gold-primary);
+    font-size: 13px;
+    margin-top: 10px;
+    padding: 8px;
+    background: rgba(198, 166, 100, 0.1);
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.error-scan .device-info {
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.error-scan .device-info p {
+    margin: 5px 0;
+    color: var(--text-light);
+}
+  

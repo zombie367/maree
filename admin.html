@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-panel">
+            <!-- Login Form -->
+            <div id="loginForm" class="login-form">
+                <h2>تسجيل الدخول</h2>
+                <input type="text" id="username" placeholder="اسم المستخدم" class="input-field">
+                <input type="password" id="password" placeholder="كلمة المرور" class="input-field">
+                <button id="loginBtn" class="admin-btn">دخول</button>
+                <button class="back-btn" onclick="window.location.href='index.html'">
+                    <span class="back-icon">↩️</span>
+                    <span class="back-text">عودة</span>
+                </button>
+            </div>
+
+            <!-- Main Menu -->
+            <div id="mainMenu" class="main-menu" style="display: none;">
+                <h2>لوحة التحكم</h2>
+
+                <div class="menu-buttons">
+                    <button class="menu-btn" onclick="showSection('scannerSection')">
+                        <span class="menu-icon">📷</span>
+                        مسح رمز QR
+                    </button>
+                    <button class="menu-btn" onclick="showSection('deviceListSection')">
+                        <span class="menu-icon">📱</span>
+                        إدارة الأجهزة
+                    </button>
+                    <button id="logoutBtn" class="menu-btn logout-menu-btn">
+                        <span class="menu-icon">🚪</span>
+                        تسجيل خروج
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scanner Section -->
+            <div id="scannerSection" class="scanner-section" style="display: none;">
+                <button class="back-to-menu-btn" onclick="showSection('mainMenu')">العودة للقائمة</button>
+                <h2>مسح رمز QR</h2>
+                <div id="reader"></div>
+                <div id="scanResult" class="scan-result"></div>
+            </div>
+
+            <!-- Device List Section -->
+            <div id="deviceListSection" class="device-list-section" style="display: none;">
+                <button class="back-to-menu-btn" onclick="showSection('mainMenu')">العودة للقائمة</button>
+                <h2>إدارة الأجهزة</h2>
+                
+                <div class="device-tabs">
+                    <button class="tab-btn active" onclick="showTab('created')">
+                        <span class="tab-icon">📝</span>
+                        <span class="tab-text">الدعوات المنشأة</span>
+                        <span class="tab-count" id="createdCount">0</span>
+                    </button>
+                    <button class="tab-btn" onclick="showTab('scanned')">
+                        <span class="tab-icon">✓</span>
+                        <span class="tab-text">الحضور</span>
+                        <span class="tab-count" id="scannedCount">0</span>
+                    </button>
+                    <button class="tab-btn" onclick="showTab('declined')">
+                        <span class="tab-icon">✗</span>
+                        <span class="tab-text">الاعتذارات</span>
+                        <span class="tab-count" id="declinedCount">0</span>
+                    </button>
+                </div>
+                
+                <button class="refresh-btn" onclick="updateDeviceList()">
+                    تحديث القائمة
+                </button>
+                
+                <div id="createdTab" class="tab-content active">
+                    <div id="createdQRList" class="device-list-container"></div>
+                </div>
+
+                <div id="scannedTab" class="tab-content">
+                    <div id="scannedDeviceList" class="device-list-container"></div>
+                </div>
+
+                <div id="declinedTab" class="tab-content">
+                    <div id="declinedList" class="device-list-container"></div>
+                    <button class="dev-reset-btn" onclick="resetAllData()">
+                        <span class="dev-icon">⚠️</span>
+                        إعادة تعيين كاملة للنظام
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="device-reset-overlay"></div>
+    <div class="device-reset-alert">
+        <h3>هل أنت متأكد من إعادة تعيين هذا الجهاز؟</h3>
+        <div class="device-reset-buttons">
+            <button class="device-reset-btn confirm">نعم</button>
+            <button class="device-reset-btn cancel">إلغاء</button>
+        </div>
+    </div>
+    <div class="dev-reset-alert">
+        <h3>تحذير: إعادة تعيين كاملة</h3>
+        <p>سيؤدي هذا إلى حذف جميع البيانات بشكل نهائي!</p>
+        <div class="device-reset-buttons">
+            <button class="device-reset-btn confirm">تأكيد</button>
+            <button class="device-reset-btn cancel">إلغاء</button>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html> 
